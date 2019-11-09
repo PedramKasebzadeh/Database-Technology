@@ -1,0 +1,159 @@
+bplist00�_WebMainResource�	
+_WebResourceTextEncodingName^WebResourceURL_WebResourceFrameName_WebResourceData_WebResourceMIMETypeUutf-8_file:///index.htmlPO%d<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1671.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">create table test2(id int);</p>
+<p class="p1">show tables;</p>
+<p class="p1">show table status;</p>
+<p class="p1">desc jbemployee;</p>
+<p class="p1">show tables;</p>
+<p class="p1">-- show company_schema.sql;</p>
+<p class="p1">desc jbdept;</p>
+<p class="p1">-- first question<span class="Apple-converted-space"> </span></p>
+<p class="p1">select * from jbemployee;</p>
+<p class="p1">-- second assignment<span class="Apple-converted-space"> </span></p>
+<p class="p1">Select name from jbdept order by name;-- ** distinct removes duplicates**<span class="Apple-converted-space"> </span></p>
+<p class="p1">-- question 3</p>
+<p class="p1">show tables;</p>
+<p class="p1">desc jbparts;</p>
+<p class="p1">select name from jbparts where qoh=0;</p>
+<p class="p1">-- 4</p>
+<p class="p1">desc jbemployee;</p>
+<p class="p1">select name from jbemployee where<span class="Apple-converted-space">  </span>salary between 9000 and 10000;</p>
+<p class="p1">-- 5<span class="Apple-converted-space"> </span></p>
+<p class="p1">desc jbemployee;</p>
+<p class="p1">select name,startyear-birthyear from jbemployee;</p>
+<p class="p1">-- 6<span class="Apple-converted-space"> </span></p>
+<p class="p1">select name from jbemployee where SUBSTRING_INDEX(name,',',1) like 'son ';</p>
+<p class="p1">-- 7<span class="Apple-converted-space"> </span></p>
+<p class="p1">select name from jbitem where supplier in (select id from jbsupplier where name = 'Fisher-Price');</p>
+<p class="p1">-- 8<span class="Apple-converted-space"> </span></p>
+<p class="p1">select jbitem.name from jbitem join jbsupplier on jbitem.supplier=jbsupplier.id where jbsupplier.name= 'Fisher-Price';</p>
+<p class="p2"><br></p>
+<p class="p1">-- 9<span class="Apple-converted-space"> </span></p>
+<p class="p1">select name from jbcity where id in (select city from jbsupplier);</p>
+<p class="p2"><br></p>
+<p class="p1">-- 10<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p1">select name,color from jbparts where weight &gt; (select weight from jbparts where name = 'card reader');</p>
+<p class="p1">-- 11</p>
+<p class="p2"><br></p>
+<p class="p1">select E.name as part,E.color as color from jbparts E inner join jbparts S on</p>
+<p class="p1"><span class="Apple-converted-space"> </span>E.weight&gt;S.weight where S.name = 'card reader';<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space"> </span>-- select * from jbparts E inner join jbparts S on E.weight&gt;S.weight;<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space"> </span>-- 12</p>
+<p class="p1">select avg(weight) from jbparts where color='black';</p>
+<p class="p1">-- 13</p>
+<p class="p2"><br></p>
+<p class="p1">Select Q.name,sum(E.weight*S.quan) from jbsupply S<span class="Apple-converted-space"> </span></p>
+<p class="p1">join jbparts E on E.id=S.part</p>
+<p class="p1">join jbsupplier Q on S.supplier=Q.id</p>
+<p class="p1">where Q.city in (select id from jbcity where state='mass')</p>
+<p class="p1">group by Q.name;<span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p1">-- 14</p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p1">create table cheap(</p>
+<p class="p1">id integer,</p>
+<p class="p1">name text,</p>
+<p class="p1">dept integer,</p>
+<p class="p1">price integer,<span class="Apple-converted-space"> </span></p>
+<p class="p1">qoh integer,<span class="Apple-converted-space"> </span></p>
+<p class="p1">supplier integer,</p>
+<p class="p1">constraint pk_cheap</p>
+<p class="p1"><span class="Apple-converted-space">   </span>primary key(id),</p>
+<p class="p1"><span class="Apple-converted-space">   </span>constraint fk_cheap</p>
+<p class="p1"><span class="Apple-converted-space">   </span>foreign key (id) references jbitem(id)</p>
+<p class="p1">);</p>
+<p class="p2"><br></p>
+<p class="p1">-- drop table cheap;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">insert into cheap select * from jbitem where price &lt; (select avg(price) from jbitem);</p>
+<p class="p2"><br></p>
+<p class="p1">-- select * from<span class="Apple-converted-space">  </span>cheap;</p>
+<p class="p2"><br></p>
+<p class="p1">-- 15</p>
+<p class="p2"><br></p>
+<p class="p1">create view cheap2 AS<span class="Apple-converted-space"> </span></p>
+<p class="p1">select * from jbitem where price &lt; (select avg(price) from jbitem);</p>
+<p class="p2"><br></p>
+<p class="p1">select * from cheap2;</p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space"> </span>-- 16<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space"> </span>-- view is dynamic in the sense that it always is updated.<span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space"> </span>-- 17<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space"> </span>create view totaldebit As</p>
+<p class="p1"><span class="Apple-converted-space"> </span>Select jbsale.debit , sum(jbsale.quantity*jbitem.price) as Cost from jbsale,jbitem</p>
+<p class="p1">where jbitem.id=jbsale.item</p>
+<p class="p1">group by debit;</p>
+<p class="p1">-- drop view totaldebit;</p>
+<p class="p1">select * from totaldebit;</p>
+<p class="p2"><br></p>
+<p class="p1">-- 18<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p1">select jbsale.debit,sum(jbsale.quantity*P.price) As cost from<span class="Apple-converted-space"> </span></p>
+<p class="p1">jbitem P right join jbsale<span class="Apple-converted-space">  </span>on jbsale.item=P.id</p>
+<p class="p1">group by<span class="Apple-converted-space">  </span>jbsale.debit;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space"> </span>-- 19<span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space"> </span>DELETE FROM jbsupplier WHERE city in (select id from jbcity where name='Los Angeles');</p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space"> </span>ALTER TABLE jbsupplier DROP FOREIGN KEY id where city in (select id from jbcity where name='Los Angeles') ADDRESS CASCADE;</p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space"> </span>ALTER TABLE jbsupplier DROP INDEX fk_supplier_city;</p>
+<p class="p2"><br></p>
+<p class="p1">select * from jbsupplier;</p>
+<p class="p2"><br></p>
+<p class="p1">ALTER TABLE jbsupplier</p>
+<p class="p1"><span class="Apple-converted-space">   </span>ADD CONSTRAINT fk_supplier_city</p>
+<p class="p1"><span class="Apple-converted-space">   </span>FOREIGN KEY (city) REFERENCES jbcity(id) ON DELETE CASCADE;</p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space"> </span>drop table jbsupplier;</p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space"> </span>--<span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space"> </span>SET FOREIGN_KEY_CHECKS = 0;</p>
+<p class="p1"><span class="Apple-converted-space"> </span>ALTER TABLE jbsupplier</p>
+<p class="p1"><span class="Apple-converted-space">   </span>ADD CONSTRAINT fk_supplier_city</p>
+<p class="p1"><span class="Apple-converted-space">   </span>FOREIGN KEY (city) REFERENCES jbcity(id) ON DELETE CASCADE;</p>
+<p class="p1">ALTER TABLE jbsupplier</p>
+<p class="p1"><span class="Apple-converted-space"> </span>DROP INDEX fk_supplier_city;</p>
+<p class="p1">SET FOREIGN_KEY_CHECKS = 1;</p>
+<p class="p2"><br></p>
+<p class="p1">DELETE FROM jbsupplier</p>
+<p class="p1"><span class="Apple-converted-space"> </span>WHERE city IN (SELECT id FROM jbcity WHERE name = "Los Angeles");</p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+</body>
+</html>
+Ytext/html    ( F U l ~ � � � �&                           &"
