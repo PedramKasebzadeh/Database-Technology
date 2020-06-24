@@ -1,2 +1,4 @@
 # Brian Air
-Brian Air is a database for scedualing flights which is co-developed with my great friend julius kittler.
+Brian Air is a database for scheduling flights which is co-developed with my great friend Julius Kittler.
+
+Some of the functions available are managing flights, passengers, airports, and roots.
